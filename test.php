@@ -20,7 +20,7 @@ if ($myfile) {
 	
 	fwrite($myfile, "\n". $content);
 	
-	fwrite($myfile, "\n". $decoded);
+	fwrite($myfile, "\n". print_r($decoded, true));
 	
 	fclose($myfile);
 }
