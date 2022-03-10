@@ -2,9 +2,16 @@
 
 $fileName = "my.html";
 
+if(strcasecmp($_SERVER['REQUEST_METHOD'], 'POST') != 0){
+	throw new Exception('Request method must be POST!');
+}
+
+$content = trim(file_get_contents("php://input"));
+$decoded = json_decode($content, true);
+
 $myfile = fopen($fileName, "a");
 if ($myfile) {
-	$data = print_r($_REQUEST, true);
+	$data = print_r($decoded, true);
 	fwrite($myfile, sprintf("\n ----------- %s -------------", date("Y-m-d H:i:s")));
 	fwrite($myfile, "\n". $data);
 	fclose($myfile);
