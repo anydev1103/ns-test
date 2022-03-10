@@ -9,11 +9,21 @@ if(strcasecmp($_SERVER['REQUEST_METHOD'], 'POST') != 0){
 $content = trim(file_get_contents("php://input"));
 $decoded = json_decode($content, true);
 
+$server = $_SERVER;
+
 $myfile = fopen($fileName, "a");
 if ($myfile) {
 	$data = print_r($decoded, true);
 	fwrite($myfile, sprintf("\n ----------- %s -------------", date("Y-m-d H:i:s")));
 	fwrite($myfile, "\n". $data);
+	
+	fwrite($myfile, "\n");
+	$data = print_r($server, true);
+	
+	
+	
+	fwrite($myfile, "\n". $data);
+	
 	fclose($myfile);
 }
 
