@@ -1,6 +1,6 @@
 <?php
 
-$fileName = "my.log";
+$fileName = "my.html";
 
 $myfile = fopen($fileName, "a");
 if ($myfile) {
